@@ -49,7 +49,7 @@ public class DecoratorsFactoryTest {
 
   @Test
   public void appendPlsqlCodeOnItems() {
-    Node trigger = new Node("foo").setType(Node.Type.TRIGGER).setPlsql("xxx");
+    Node trigger = new Node("foo").setType(Node.Type.TRIGGER).setPlsql("xxx").setPath("mypath");
     assertThat(DecoratorFactory.decorate(trigger)).startsWith("-- path: mypath");
     assertThat(DecoratorFactory.decorate(trigger)).contains("xxx");
   }
