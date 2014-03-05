@@ -88,10 +88,6 @@ public class Node {
     return this;
   }
 
-  public String getPath() {
-    return path;
-  }
-
   @Nullable
   public String getName() {
     return name;
@@ -103,16 +99,6 @@ public class Node {
 
   public String getPlsql() {
     return plsql;
-  }
-
-  public Node setPath(String path) {
-    this.path = path;
-    return this;
-  }
-
-  public Node setName(String name) {
-    this.name = name;
-    return this;
   }
 
   public Node setPlsql(String plsql) {
@@ -153,10 +139,6 @@ public class Node {
 
   public boolean isGuiItem() {
     return Type.TRIGGER.equals(type) || Type.MENU_ITEM.equals(type);
-  }
-
-  public boolean isItem() {
-    return isGuiItem() || isProgramUnit();
   }
 
   public boolean isGui() {

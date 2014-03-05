@@ -17,30 +17,26 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.oracleforms.plsql.decorators;
+package org.sonar.oracleforms.plsql;
 
-import org.apache.commons.lang.StringUtils;
-import org.sonar.oracleforms.plsql.Node;
+import oracle.forms.jdapi.Jdapi;
+import oracle.forms.jdapi.JdapiModule;
 
-import java.util.Arrays;
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
-public final class DecoratorFactory {
+class JdapiProxy {
 
-  private DecoratorFactory() {
-    // only static methods
+  void init() throws IOException {
+    Jdapi.setFailSubclassLoad(false);
+    Jdapi.setFailLibraryLoad(false);
   }
 
-  private static List<Decorator> decorators = Arrays.asList(new CalculatedFieldDecorator(),
-      new GuiBlockDecorator(), new GuiItemDecorator(),
-      new CommentPathDecorator(), new ProgramUnitDecorator());
-
-  public static String decorate(Node node) {
-    String plsql = StringUtils.defaultString(node.getPlsql());
-    for (Decorator decorator : decorators) {
-      plsql = decorator.decorate(node, plsql);
-    }
-    return plsql;
+  Form openModule(File formFile) {
+    return new Form(JdapiModule.openModule(formFile));
   }
 
+  void shutdown() {
+    Jdapi.shutdown();
+  }
 }

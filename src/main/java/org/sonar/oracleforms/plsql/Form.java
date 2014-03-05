@@ -11,7 +11,7 @@
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
+ * Lesser General License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this program; if not, write to the Free Software
@@ -30,27 +30,27 @@ import org.sonar.oracleforms.plsql.decorators.DecoratorFactory;
 import javax.annotation.Nullable;
 import java.io.*;
 
-public class Form {
+class Form {
 
   private static final Logger LOG = LoggerFactory.getLogger(Form.class);
 
   private final JdapiModule jdapiModule;
 
-  public static Form fromFile(File file) {
-    return new Form(JdapiModule.openModule(file));
-  }
-
-  public Form(JdapiModule jdapiModule) {
+  Form(JdapiModule jdapiModule) {
     this.jdapiModule = jdapiModule;
   }
+  
+  void destroy() {
+    jdapiModule.destroy();
+  }
 
-  public void extractPlsql(File toDir) throws IOException {
-    LOG.debug("Browsing JDAPI nodes...");
+  void extractPlsql(File toDir) throws IOException {
+    LOG.debug("Browse JDAPI nodes...");
     Node root = browse(jdapiModule, null);
     File targetDir = createTargetDir(root, toDir);
-    LOG.debug("Extracting program units...");
+    LOG.debug("Extract program units...");
     writeProgramUnits(root, targetDir);
-    LOG.debug("Extracting GUI...");
+    LOG.debug("Extract GUI...");
     writeGui(root, targetDir);
 
   }

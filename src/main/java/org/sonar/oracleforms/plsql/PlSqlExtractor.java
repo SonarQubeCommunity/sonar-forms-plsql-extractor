@@ -19,8 +19,6 @@
  */
 package org.sonar.oracleforms.plsql;
 
-import oracle.forms.jdapi.Jdapi;
-import oracle.forms.jdapi.JdapiModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,54 +30,49 @@ class PlSqlExtractor {
   private static final Logger LOG = LoggerFactory.getLogger(PlSqlExtractor.class);
 
   private final Settings settings;
+  private final JdapiProxy jdapi;
 
-  private PlSqlExtractor(Settings settings) {
+  private PlSqlExtractor(Settings settings, JdapiProxy jdapi) {
     this.settings = settings;
+    this.jdapi = jdapi;
   }
 
   public void run() throws IOException {
     try {
-      initJdapi();
+      jdapi.init();
+      LOG.info("PL/SQL output directory is: " + settings.outputDir());
       for (File formFile : settings.formsFiles()) {
         extractForm(formFile, settings.outputDir());
       }
     } finally {
-      shutdownJdapi();
+      jdapi.shutdown();
     }
   }
 
   void extractForm(File formFile, File toDir) throws IOException {
     long start = System.currentTimeMillis();
-    LOG.info("Extracting PL/SQL code from : " + formFile.getCanonicalPath());
-    LOG.debug("Open JDAPI module: " + formFile.getAbsolutePath());
-    JdapiModule module = JdapiModule.openModule(formFile);
+    LOG.info("Process file: " + formFile.getAbsolutePath());
+    Form form = null;
     try {
-      new Form(module).extractPlsql(toDir);
-
+      form = jdapi.openModule(formFile);
+      form.extractPlsql(toDir);
     } finally {
-      if (module != null) {
         try {
-          module.destroy();
+          if (form != null) {
+            form.destroy();
+          }
         } catch (Exception e) {
           // ignore
           LOG.warn("Fail to clean memory", e);
         }
-      }
+
     }
-    LOG.info("Extracted in " + (System.currentTimeMillis() - start) + " ms");
+    LOG.info("  PL/SQL code extracted in " + (System.currentTimeMillis() - start));
   }
 
-  void initJdapi() throws IOException {
-    Jdapi.setFailSubclassLoad(false);
-    Jdapi.setFailLibraryLoad(false);
-  }
-
-  void shutdownJdapi() {
-    Jdapi.shutdown();
-  }
 
   public static void main(String[] args) throws IOException {
     Settings settings = new Settings(System.getProperties());
-    new PlSqlExtractor(settings).run();
+    new PlSqlExtractor(settings, new JdapiProxy()).run();
   }
 }

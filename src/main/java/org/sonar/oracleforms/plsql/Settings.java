@@ -46,13 +46,13 @@ class Settings {
   }
 
   private static File initDir(Properties props, String propKey) {
-    String path = props.getProperty("inputDir");
+    String path = props.getProperty(propKey);
     if (path == null) {
-      throw new IllegalArgumentException("Property 'inputDir' is required");
+      throw new IllegalArgumentException(String.format("Property '%s' is required", propKey));
     }
     File dir = new File(path);
     if (!dir.exists() || !dir.isDirectory()) {
-      throw new IllegalArgumentException("Value of property 'inputDir' is not valid. Directory does not exist: " + path);
+      throw new IllegalArgumentException(String.format("Value of property '%s' is not valid. Directory does not exist: %s", propKey, path));
     }
     return dir;
   }
