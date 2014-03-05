@@ -24,3 +24,8 @@ How to build
 ------------
 
 TODO
+
+License
+-------
+
+GNU LGPL v3
