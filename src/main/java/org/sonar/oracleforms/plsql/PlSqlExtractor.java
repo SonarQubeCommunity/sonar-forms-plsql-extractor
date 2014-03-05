@@ -25,19 +25,22 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 
-class PlSqlExtractor {
+public class PlSqlExtractor {
 
   private static final Logger LOG = LoggerFactory.getLogger(PlSqlExtractor.class);
 
   private final Settings settings;
   private final JdapiProxy jdapi;
+  private final JdapiAvailability jdapiAvailability;
 
-  private PlSqlExtractor(Settings settings, JdapiProxy jdapi) {
+  PlSqlExtractor(Settings settings, JdapiAvailability jdapiAvailability, JdapiProxy jdapi) {
     this.settings = settings;
+    this.jdapiAvailability = jdapiAvailability;
     this.jdapi = jdapi;
   }
 
   public void run() throws IOException {
+    jdapiAvailability.check();
     try {
       jdapi.init();
       LOG.info("PL/SQL output directory is: " + settings.outputDir());
@@ -57,15 +60,14 @@ class PlSqlExtractor {
       form = jdapi.openModule(formFile);
       form.extractPlsql(toDir);
     } finally {
-        try {
-          if (form != null) {
-            form.destroy();
-          }
-        } catch (Exception e) {
-          // ignore
-          LOG.warn("Fail to clean memory", e);
+      try {
+        if (form != null) {
+          form.destroy();
         }
-
+      } catch (Exception e) {
+        // ignore
+        LOG.warn("Fail to clean memory", e);
+      }
     }
     LOG.info("  PL/SQL code extracted in " + (System.currentTimeMillis() - start));
   }
@@ -73,6 +75,6 @@ class PlSqlExtractor {
 
   public static void main(String[] args) throws IOException {
     Settings settings = new Settings(System.getProperties());
-    new PlSqlExtractor(settings, new JdapiProxy()).run();
+    new PlSqlExtractor(settings, new JdapiAvailability(), new JdapiProxy()).run();
   }
 }

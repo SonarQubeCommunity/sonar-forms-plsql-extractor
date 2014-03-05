@@ -31,13 +31,13 @@ public final class DecoratorFactory {
     // only static methods
   }
 
-  private static List<Decorator> decorators = Arrays.asList(new CalculatedFieldDecorator(),
+  private static final List<Decorator> DECORATORS = Arrays.asList(new CalculatedFieldDecorator(),
       new GuiBlockDecorator(), new GuiItemDecorator(),
       new CommentPathDecorator(), new ProgramUnitDecorator());
 
   public static String decorate(Node node) {
     String plsql = StringUtils.defaultString(node.getPlsql());
-    for (Decorator decorator : decorators) {
+    for (Decorator decorator : DECORATORS) {
       plsql = decorator.decorate(node, plsql);
     }
     return plsql;

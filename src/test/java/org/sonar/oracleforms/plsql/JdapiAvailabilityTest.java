@@ -17,10 +17,27 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.oracleforms.plsql.decorators;
+package org.sonar.oracleforms.plsql;
 
-import org.sonar.oracleforms.plsql.Node;
+import org.junit.Test;
 
-public interface Decorator {
-  String decorate(Node node, String text);
+import static org.fest.assertions.Assertions.assertThat;
+import static org.fest.assertions.Fail.fail;
+
+public class JdapiAvailabilityTest {
+  @Test
+  public void check() throws Exception {
+    new JdapiAvailability().check();
+    // does not fail because frmjdapi is available in test classpath
+  }
+
+  @Test
+  public void fail_if_class_not_found() throws Exception {
+    try {
+      new JdapiAvailability().check("does.not.Exist");
+      fail();
+    } catch (IllegalStateException e) {
+      assertThat(e).hasMessage("Oracle JDAPI file (usually named frmjdapi.jar) is not available in classpath");
+    }
+  }
 }

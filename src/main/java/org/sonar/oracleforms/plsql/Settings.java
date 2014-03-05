@@ -20,6 +20,7 @@
 package org.sonar.oracleforms.plsql;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 
 import java.io.File;
 import java.util.Collection;
@@ -31,14 +32,25 @@ class Settings {
 
   private final File inputDir;
   private final File outputDir;
+  private final String[] formsExtensions;
 
   Settings(Properties props) {
     inputDir = initDir(props, "inputDir");
     outputDir = initDir(props, "outputDir");
+    String extensions = props.getProperty("formsExtensions");
+    if (extensions == null) {
+      formsExtensions = FORMS_EXTENSIONS;
+    } else {
+      formsExtensions = StringUtils.split(extensions, ",");
+    }
   }
 
   Collection<File> formsFiles() {
-    return FileUtils.listFiles(inputDir, FORMS_EXTENSIONS, true);
+    return FileUtils.listFiles(inputDir, formsExtensions, true);
+  }
+
+  File inputDir() {
+    return inputDir;
   }
 
   File outputDir() {
@@ -48,11 +60,11 @@ class Settings {
   private static File initDir(Properties props, String propKey) {
     String path = props.getProperty(propKey);
     if (path == null) {
-      throw new IllegalArgumentException(String.format("Property '%s' is required", propKey));
+      throw new IllegalStateException(String.format("Property '%s' is required", propKey));
     }
     File dir = new File(path);
     if (!dir.exists() || !dir.isDirectory()) {
-      throw new IllegalArgumentException(String.format("Value of property '%s' is not valid. Directory does not exist: %s", propKey, path));
+      throw new IllegalStateException(String.format("Value of property '%s' is not valid. Directory does not exist: %s", propKey, path));
     }
     return dir;
   }

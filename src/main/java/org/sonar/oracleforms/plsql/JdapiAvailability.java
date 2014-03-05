@@ -17,10 +17,27 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.oracleforms.plsql.decorators;
+package org.sonar.oracleforms.plsql;
 
-import org.sonar.oracleforms.plsql.Node;
+class JdapiAvailability {
+  private static final String JDAPI_CLASSNAME = "oracle.forms.jdapi.Jdapi";
 
-public interface Decorator {
-  String decorate(Node node, String text);
+  void check() {
+    check(JDAPI_CLASSNAME);
+  }
+
+  void check(String classname) {
+    if (!isAvailableInClasspath(classname)) {
+      throw new IllegalStateException("Oracle JDAPI file (usually named frmjdapi.jar) is not available in classpath");
+    }
+  }
+
+  boolean isAvailableInClasspath(String classname) {
+    try {
+      return JdapiAvailability.class.getClassLoader().loadClass(classname) != null;
+
+    } catch (ClassNotFoundException e) {
+      return false;
+    }
+  }
 }
