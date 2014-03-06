@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 
 public class PlSqlExtractor {
 
@@ -69,7 +70,10 @@ public class PlSqlExtractor {
 
 
   public static void main(String[] args) throws IOException {
-    Settings settings = new Settings(System.getProperties());
-    new PlSqlExtractor(settings, new JdapiAvailability(), new JdapiProxy()).run();
+    create(System.getProperties()).run();
+  }
+
+  static PlSqlExtractor create(Properties props) {
+    return new PlSqlExtractor(new Settings(props), new JdapiAvailability(), new JdapiProxy());
   }
 }
