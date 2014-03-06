@@ -31,15 +31,15 @@ public final class DecoratorFactory {
       new GuiBlockDecorator(), new GuiItemDecorator(),
       new CommentPathDecorator(), new ProgramUnitDecorator());
 
+  private DecoratorFactory() {
+    // only static methods
+  }
+
   public static String decorate(Node node) {
     String plsql = StringUtils.defaultString(node.getPlsql());
     for (Decorator decorator : DECORATORS) {
       plsql = decorator.decorate(node, plsql);
     }
     return plsql;
-  }
-
-  private DecoratorFactory() {
-    // only static methods
   }
 }
