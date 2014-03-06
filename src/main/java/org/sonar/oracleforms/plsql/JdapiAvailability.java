@@ -34,7 +34,8 @@ class JdapiAvailability {
 
   boolean isAvailableInClasspath(String classname) {
     try {
-      return JdapiAvailability.class.getClassLoader().loadClass(classname) != null;
+      JdapiAvailability.class.getClassLoader().loadClass(classname);
+      return true;
 
     } catch (ClassNotFoundException e) {
       return false;
