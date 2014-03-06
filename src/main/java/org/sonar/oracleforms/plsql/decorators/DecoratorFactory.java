@@ -27,10 +27,6 @@ import java.util.List;
 
 public final class DecoratorFactory {
 
-  private DecoratorFactory() {
-    // only static methods
-  }
-
   private static final List<Decorator> DECORATORS = Arrays.asList(new CalculatedFieldDecorator(),
       new GuiBlockDecorator(), new GuiItemDecorator(),
       new CommentPathDecorator(), new ProgramUnitDecorator());
@@ -43,4 +39,7 @@ public final class DecoratorFactory {
     return plsql;
   }
 
+  private DecoratorFactory() {
+    // only static methods
+  }
 }
