@@ -23,7 +23,24 @@ The property 'formsExtensions' is optional. It's a comma-separated list of the e
 How to build
 ------------
 
-TODO
+The Java library frmjdapi is provided by the Oracle Developer Suite (see forms/java/frmjdapi.jar) and must be installed into the Maven repository :
+
+```
+mvn install:install-file  -Dfile=/path/to/frmjdapi.jar -DgroupId=com.oracle -DartifactId=frmjdapi -Dversion=10.0 -Dpackaging=jar
+```
+
+Then simply execute the following command. It does not require Oracle Developer Suite on the box:
+
+```
+mvn clean install
+```
+
+Medium tests are executed when enabling the profile "runMediumTests". Note that it requires the Oracle Dev Suite on the box:
+
+```
+mvn clean install -PrunMediumTests
+```
+
 
 License
 -------
