@@ -60,13 +60,8 @@ public class PlSqlExtractor {
       form = jdapi.openModule(formFile);
       form.extractPlsql(toDir);
     } finally {
-      try {
-        if (form != null) {
-          form.destroy();
-        }
-      } catch (Exception e) {
-        // ignore
-        LOG.warn("Fail to clean memory", e);
+      if (form != null) {
+        form.destroy();
       }
     }
     LOG.info("  PL/SQL code extracted in " + (System.currentTimeMillis() - start));

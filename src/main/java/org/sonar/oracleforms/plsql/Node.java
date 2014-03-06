@@ -21,6 +21,7 @@ package org.sonar.oracleforms.plsql;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -88,10 +89,6 @@ public class Node {
     return this;
   }
 
-  public String getPath() {
-    return path;
-  }
-
   @Nullable
   public String getName() {
     return name;
@@ -155,10 +152,6 @@ public class Node {
     return Type.TRIGGER.equals(type) || Type.MENU_ITEM.equals(type);
   }
 
-  public boolean isItem() {
-    return isGuiItem() || isProgramUnit();
-  }
-
   public boolean isGui() {
     return isGuiBlock() || isGuiItem();
   }
@@ -181,7 +174,7 @@ public class Node {
 
   @Override
   public String toString() {
-    return new ReflectionToStringBuilder(this).toString();
+    return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).toString();
   }
 
   public String getParentName() {

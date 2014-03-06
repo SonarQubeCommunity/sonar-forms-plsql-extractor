@@ -40,4 +40,10 @@ public class JdapiAvailabilityTest {
       assertThat(e).hasMessage("Oracle JDAPI file (usually named frmjdapi.jar) is not available in classpath");
     }
   }
+
+  @Test
+  public void success_if_class_found() throws Exception {
+    new JdapiAvailability().check(PlSqlExtractor.class.getName());
+    // no failure
+  }
 }

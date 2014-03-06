@@ -31,6 +31,11 @@ public class NodeTest {
   }
 
   @Test
+  public void to_string() {
+    assertThat(new Node("FORMULA-CALCULATION").toString()).isEqualTo("Node[path=<null>,name=FORMULA-CALCULATION,plsql=<null>,type=<null>,children=[],parentName=<null>]");
+  }
+
+  @Test
   public void keyShouldStartBySlash() {
     assertThat(new Node("foo").getKey()).isEqualTo("/foo");
     assertThat(new Node(new Node("parent"), "foo").getKey()).isEqualTo("/parent/foo");
