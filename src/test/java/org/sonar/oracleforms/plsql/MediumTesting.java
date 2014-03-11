@@ -46,20 +46,20 @@ public class MediumTesting {
   @Test
   public void extract_plsql_code_from_oracle_forms() throws Exception {
     File outputDir = temp.newFolder();
-
     Properties props = new Properties();
     props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest").getAbsolutePath());
     props.setProperty("outputDir", outputDir.getAbsolutePath());
+
     PlSqlExtractor.create(props).run();
 
     List<File> generatedSqlFiles = new ArrayList<File>(FileUtils.listFiles(outputDir, new String[]{"sql"}, true));
     assertThat(generatedSqlFiles).hasSize(1);
     File sqlFile = generatedSqlFiles.get(0);
     assertThat(sqlFile.getCanonicalPath()).isEqualTo(new File(outputDir, "UE_SAMP/UE_SAMP_GUI.sql").getCanonicalPath());
-    assertThat(FileUtils.sizeOf(sqlFile)).isGreaterThan(0L);
-
-    System.out.println("-----------------------");
-    System.out.println(FileUtils.readFileToString(sqlFile));
-    System.out.println("-----------------------");
+    String sql = FileUtils.readFileToString(sqlFile);
+    assertThat(sql)
+        .isNotEmpty()
+        .contains("Procedure UE_SAMP_ Is")
+        .contains("-- path: /UE_SAMP/BLOCK1/ITEM3/PRE-TEXT-ITEM (TRIGGER)");
   }
 }
