@@ -19,6 +19,8 @@
  */
 package org.sonar.oracleforms.plsql;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -47,6 +49,9 @@ public class MediumTesting {
     props.setProperty("outputDir", outputDir.getAbsolutePath());
     PlSqlExtractor.create(props).run();
 
+    for (File file : FileUtils.listFiles(outputDir, TrueFileFilter.TRUE, TrueFileFilter.TRUE)) {
+      System.out.println("  + " + file.getAbsolutePath());
+    }
     // TODO assertions
   }
 }
