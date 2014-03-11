@@ -20,13 +20,16 @@
 package org.sonar.oracleforms.plsql;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+
+import static org.fest.assertions.Assertions.assertThat;
 
 /**
  * This class requires Oracle Developer Suite and its Forms module to be installed
@@ -49,9 +52,14 @@ public class MediumTesting {
     props.setProperty("outputDir", outputDir.getAbsolutePath());
     PlSqlExtractor.create(props).run();
 
-    for (File file : FileUtils.listFiles(outputDir, TrueFileFilter.TRUE, TrueFileFilter.TRUE)) {
-      System.out.println("  + " + file.getAbsolutePath());
-    }
-    // TODO assertions
+    List<File> generatedSqlFiles = new ArrayList<File>(FileUtils.listFiles(outputDir, new String[]{"sql"}, true));
+    assertThat(generatedSqlFiles).hasSize(1);
+    File sqlFile = generatedSqlFiles.get(0);
+    assertThat(sqlFile.getCanonicalPath()).isEqualTo(new File(outputDir, "UE_SAMP/UE_SAMP_GUI.sql").getCanonicalPath());
+    assertThat(FileUtils.sizeOf(sqlFile)).isGreaterThan(0L);
+
+    System.out.println("-----------------------");
+    System.out.println(FileUtils.readFileToString(sqlFile));
+    System.out.println("-----------------------");
   }
 }
