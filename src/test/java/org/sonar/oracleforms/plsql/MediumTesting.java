@@ -62,4 +62,20 @@ public class MediumTesting {
         .contains("Procedure UE_SAMP_ Is")
         .contains("-- path: /UE_SAMP/BLOCK1/ITEM3/PRE-TEXT-ITEM (TRIGGER)");
   }
+
+  @Test
+  public void forms_extensions_property() throws Exception {
+    File outputDir = temp.newFolder();
+    Properties props = new Properties();
+    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest").getAbsolutePath());
+    props.setProperty("outputDir", outputDir.getAbsolutePath());
+
+    props.setProperty("formsExtensions", "forms,oracle");
+    PlSqlExtractor.create(props).run();
+    assertThat(FileUtils.listFiles(outputDir, new String[]{"sql"}, true)).isEmpty();
+
+    props.setProperty("formsExtensions", "forms,fmb");
+    PlSqlExtractor.create(props).run();
+    assertThat(FileUtils.listFiles(outputDir, new String[]{"sql"}, true)).hasSize(1);
+  }
 }
