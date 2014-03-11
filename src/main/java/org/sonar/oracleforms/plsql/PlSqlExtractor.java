@@ -65,7 +65,7 @@ public class PlSqlExtractor {
         form.destroy();
       }
     }
-    LOG.info("  PL/SQL code extracted in " + (System.currentTimeMillis() - start));
+    LOG.info(String.format("  PL/SQL code extracted in %d ms", System.currentTimeMillis() - start));
   }
 
 
