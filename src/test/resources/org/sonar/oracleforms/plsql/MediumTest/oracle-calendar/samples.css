@@ -1,0 +1,194 @@
+/* samples.css                   */
+/* last update 17/01/2002          */
+/* by Jonas Jacobi              */
+
+/* In order for Netscape AND IE to read the same headers you should use the .formsH# class in the P tag; example <p class=formsH1>*/
+
+A:link {
+	font-family: Arial, Helvetica, sans-serif;
+	color:#663300;
+
+}
+
+A:active {
+	font-family: Arial, Helvetica, sans-serif;
+	color:#ff6600;
+
+}
+
+A:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	color:#996633;
+
+}
+
+A.navigation:link
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:65%; 
+	color:#996633;
+
+}
+
+A.navigation:active
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:65%; 
+	color:#996633;
+
+}
+
+A.navigation:visited
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:65%; 
+	color:#996633;
+
+}
+
+
+BODY, P, LI, UL, OL, NORMAL, NONE {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	color:#000000;
+	padding:0;
+
+}
+
+LI.tight {
+ 	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color:#000000;
+	list-style-position: outside;
+	padding-bottom : 0%; 
+}
+
+
+/* Headers 1-6                                          */
+/* H1 - H2 has a border-width to 2px */
+/* H3 has a border width to 1px */
+
+
+H1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:18pt;
+	color:#336699;
+	padding:0;
+	border : solid #6699CC;
+	border-width : 0px 0px 2px 0px;
+	width : 100%;
+}
+
+.formsH1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:18pt;
+	font-weight:bold;
+	color:#336699;
+	padding:0;
+	border : solid #6699CC;
+	border-width : 0px 0px 2px 0px;
+	width : 100%;
+
+}
+
+H2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:14pt;
+	color:#336699;
+	padding:0;
+	border : solid #6699CC;
+	border-width : 0px 0px 2px 0px;
+	width : 100%;
+}
+
+.formsH2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:14pt;
+	font-weight:bold;
+	color:#336699;
+	padding:0;
+	border : solid #6699CC;
+	border-width : 0px 0px 2px 0px;
+	width : 100%;
+}
+
+H3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12pt;
+	font-weight:bold;
+	color:#336699;
+	padding:0;
+	border : solid #6699CC;
+	border-width : 0px 0px 1px 0px;
+	width : 100%;
+}
+
+.formsH3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12pt;
+	font-weight:bold;
+	color:#6699CC;
+	padding:0;
+	border : solid #6699CC;
+	border-width : 0px 0px 1px 0px;
+	width : 100%;
+}
+
+H4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	font-weight:bold;
+	color:#6699CC;
+}
+
+.formsH4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	font-weight:bold;
+	color:#6699CC;
+}
+
+H5 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:8pt;
+	font-weight:normal;
+	color:#000000;
+	padding:0;
+}
+
+.formsH5 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:8pt;
+	font-weight:normal;
+	color:#000000;
+	padding:0;
+}
+
+
+H6 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	font-weight:normal;
+	color:#000000;
+	padding:0;
+}
+.formsH6 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	font-weight:normal;
+	color:#000000;
+	padding:0;
+}
+
+/* Code in color */
+.CODE {
+	color : #336699;
+	font-family : "Courier New", "Courier", "monospace";
+	font-size:10pt;
+}
+
+/*Code with no color */
+CODE.nocolor {
+	font-family : "Courier New", "Courier", "monospace";
+	font-size:10pt;
+}

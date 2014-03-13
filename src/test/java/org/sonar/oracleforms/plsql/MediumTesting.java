@@ -77,10 +77,10 @@ public class MediumTesting {
   }
 
   @Test
-  public void extract_oracle_iorganizer() throws Exception {
+  public void extract_oracle_bigraph() throws Exception {
     File outputDir = temp.newFolder();
     Properties props = new Properties();
-    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-iorganizer").getAbsolutePath());
+    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-bigraph").getAbsolutePath());
     props.setProperty("outputDir", outputDir.getAbsolutePath());
 
     PlSqlExtractor.create(props).run();
@@ -90,10 +90,23 @@ public class MediumTesting {
   }
 
   @Test
-  public void extract_oracle_summit() throws Exception {
+  public void extract_oracle_calendar() throws Exception {
     File outputDir = temp.newFolder();
     Properties props = new Properties();
-    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-summit").getAbsolutePath());
+    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-calendar").getAbsolutePath());
+    props.setProperty("outputDir", outputDir.getAbsolutePath());
+
+    PlSqlExtractor.create(props).run();
+
+    List<File> generatedSqlFiles = new ArrayList<File>(FileUtils.listFiles(outputDir, new String[]{"sql"}, true));
+    System.out.println(generatedSqlFiles);
+  }
+
+  @Test
+  public void extract_oracle_featuredemo() throws Exception {
+    File outputDir = temp.newFolder();
+    Properties props = new Properties();
+    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-featuredemo").getAbsolutePath());
     props.setProperty("outputDir", outputDir.getAbsolutePath());
 
     PlSqlExtractor.create(props).run();
