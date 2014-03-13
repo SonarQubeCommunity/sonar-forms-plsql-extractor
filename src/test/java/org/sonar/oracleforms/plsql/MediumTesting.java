@@ -25,6 +25,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -65,54 +66,24 @@ public class MediumTesting {
 
   @Test
   public void extract_oracle_demo() throws Exception {
-    File outputDir = temp.newFolder();
-    Properties props = new Properties();
-    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-demo").getAbsolutePath());
-    props.setProperty("outputDir", outputDir.getAbsolutePath());
-
-    PlSqlExtractor.create(props).run();
-
-    List<File> generatedSqlFiles = new ArrayList<File>(FileUtils.listFiles(outputDir, new String[]{"sql"}, true));
-    System.out.println(generatedSqlFiles);
+    assertExtractionOk("oracle-demo");
   }
 
   @Test
   public void extract_oracle_bigraph() throws Exception {
-    File outputDir = temp.newFolder();
-    Properties props = new Properties();
-    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-bigraph").getAbsolutePath());
-    props.setProperty("outputDir", outputDir.getAbsolutePath());
-
-    PlSqlExtractor.create(props).run();
-
-    List<File> generatedSqlFiles = new ArrayList<File>(FileUtils.listFiles(outputDir, new String[]{"sql"}, true));
-    System.out.println(generatedSqlFiles);
+    assertExtractionOk("oracle-bigraph");
   }
 
-  @Test
-  public void extract_oracle_calendar() throws Exception {
+  private void assertExtractionOk(String project) throws IOException {
     File outputDir = temp.newFolder();
     Properties props = new Properties();
-    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-calendar").getAbsolutePath());
+    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/" + project).getAbsolutePath());
     props.setProperty("outputDir", outputDir.getAbsolutePath());
 
     PlSqlExtractor.create(props).run();
 
     List<File> generatedSqlFiles = new ArrayList<File>(FileUtils.listFiles(outputDir, new String[]{"sql"}, true));
-    System.out.println(generatedSqlFiles);
-  }
-
-  @Test
-  public void extract_oracle_featuredemo() throws Exception {
-    File outputDir = temp.newFolder();
-    Properties props = new Properties();
-    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-featuredemo").getAbsolutePath());
-    props.setProperty("outputDir", outputDir.getAbsolutePath());
-
-    PlSqlExtractor.create(props).run();
-
-    List<File> generatedSqlFiles = new ArrayList<File>(FileUtils.listFiles(outputDir, new String[]{"sql"}, true));
-    System.out.println(generatedSqlFiles);
+    assertThat(generatedSqlFiles.size()).isGreaterThan(0);
   }
 
   @Test
