@@ -47,7 +47,7 @@ public class MediumTesting {
   public void extract_plsql_code_from_oracle_forms() throws Exception {
     File outputDir = temp.newFolder();
     Properties props = new Properties();
-    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest").getAbsolutePath());
+    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/sample").getAbsolutePath());
     props.setProperty("outputDir", outputDir.getAbsolutePath());
 
     PlSqlExtractor.create(props).run();
@@ -64,10 +64,49 @@ public class MediumTesting {
   }
 
   @Test
+  public void extract_oracle_demo() throws Exception {
+    File outputDir = temp.newFolder();
+    Properties props = new Properties();
+    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-demo").getAbsolutePath());
+    props.setProperty("outputDir", outputDir.getAbsolutePath());
+
+    PlSqlExtractor.create(props).run();
+
+    List<File> generatedSqlFiles = new ArrayList<File>(FileUtils.listFiles(outputDir, new String[]{"sql"}, true));
+    System.out.println(generatedSqlFiles);
+  }
+
+  @Test
+  public void extract_oracle_iorganizer() throws Exception {
+    File outputDir = temp.newFolder();
+    Properties props = new Properties();
+    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-iorganizer").getAbsolutePath());
+    props.setProperty("outputDir", outputDir.getAbsolutePath());
+
+    PlSqlExtractor.create(props).run();
+
+    List<File> generatedSqlFiles = new ArrayList<File>(FileUtils.listFiles(outputDir, new String[]{"sql"}, true));
+    System.out.println(generatedSqlFiles);
+  }
+
+  @Test
+  public void extract_oracle_summit() throws Exception {
+    File outputDir = temp.newFolder();
+    Properties props = new Properties();
+    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/oracle-summit").getAbsolutePath());
+    props.setProperty("outputDir", outputDir.getAbsolutePath());
+
+    PlSqlExtractor.create(props).run();
+
+    List<File> generatedSqlFiles = new ArrayList<File>(FileUtils.listFiles(outputDir, new String[]{"sql"}, true));
+    System.out.println(generatedSqlFiles);
+  }
+
+  @Test
   public void forms_extensions_property() throws Exception {
     File outputDir = temp.newFolder();
     Properties props = new Properties();
-    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest").getAbsolutePath());
+    props.setProperty("inputDir", new File("src/test/resources/org/sonar/oracleforms/plsql/MediumTest/sample").getAbsolutePath());
     props.setProperty("outputDir", outputDir.getAbsolutePath());
 
     props.setProperty("formsExtensions", "forms,oracle");
