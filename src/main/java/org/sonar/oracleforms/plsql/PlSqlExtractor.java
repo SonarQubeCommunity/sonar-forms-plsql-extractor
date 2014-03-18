@@ -63,7 +63,7 @@ public class PlSqlExtractor {
     } finally {
       if (form != null) {
         try {
-        form.destroy();
+          form.destroy();
         } catch (Exception e) {
           // silent
           LOG.warn("Fai lto destroy form " + formFile, e);
