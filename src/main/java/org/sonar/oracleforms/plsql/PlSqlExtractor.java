@@ -62,7 +62,12 @@ public class PlSqlExtractor {
       form.extractPlsql(toDir);
     } finally {
       if (form != null) {
+        try {
         form.destroy();
+        } catch (Exception e) {
+          // silent
+          LOG.warn("Fai lto destroy form " + formFile, e);
+        }
       }
     }
     LOG.info(String.format("  PL/SQL code extracted in %d ms", System.currentTimeMillis() - start));
