@@ -15,7 +15,8 @@ The PL/SQL extractor uses the Oracle JDAPI library that is included in the Oracl
 
 Then execute the following command:
 ```
-java -DinputDir=/dir/contains/forms -DoutputDir=/path/to/plsql -cp /path/to/sonar-forms-plsql-extractor-1.0-jar-with-dependencies.jar:/path/to/frmdapi.jar org.sonar.oracleforms.plsql.PlSqlExtractor
+set FORMS_PATH=C:\forms_project
+java -DinputDir=C:\forms_project -DoutputDir=C:\extracted_plsql -cp C:\path\to\sonar-forms-plsql-extractor-1.0-jar-with-dependencies.jar;C:\path\to\oracle\forms\java\frmdapi.jar org.sonar.oracleforms.plsql.PlSqlExtractor
 ```
 
 The property 'formsExtensions' is optional. It's a comma-separated list of the extensions of Oracle Forms files. By default value is 'fmb,mmb,olb,pll'. The output directory, as set by the property outputDir, must exist and is not clean up. Generated files override existing ones.
