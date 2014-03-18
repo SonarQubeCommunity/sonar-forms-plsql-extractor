@@ -28,8 +28,8 @@ import java.io.IOException;
 class JdapiProxy {
 
   void init() throws IOException {
-    Jdapi.setFailSubclassLoad(false);
-    Jdapi.setFailLibraryLoad(false);
+    Jdapi.setFailSubclassLoad(true);
+    Jdapi.setFailLibraryLoad(true);
   }
 
   Form openModule(File formFile) {
