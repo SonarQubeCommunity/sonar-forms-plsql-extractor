@@ -28,7 +28,7 @@ import java.io.IOException;
 class JdapiProxy {
 
   void init() throws IOException {
-    Jdapi.setFailSubclassLoad(true);
+    Jdapi.setFailSubclassLoad(false);
     Jdapi.setFailLibraryLoad(true);
   }
 
