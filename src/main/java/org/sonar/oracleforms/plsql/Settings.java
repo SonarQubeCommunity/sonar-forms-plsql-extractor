@@ -21,12 +21,17 @@ package org.sonar.oracleforms.plsql;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.util.Collection;
 import java.util.Properties;
 
 class Settings {
+
+  private static final Logger LOG = LoggerFactory.getLogger(Settings.class);
 
   static final String[] FORMS_EXTENSIONS = {"fmb", "mmb", "olb", "pll"};
 
@@ -55,6 +60,21 @@ class Settings {
 
   File outputDir() {
     return outputDir;
+  }
+
+  void logEnv() {
+    logEnvVariable("PATH");
+    logEnvVariable("ORACLE_HOME");
+    logEnvVariable("FORMS_PATH");
+    log("CLASSPATH", System.getProperty("java.class.path"));
+  }
+
+  private void logEnvVariable(String key) {
+    log(key, System.getenv(key));
+  }
+
+  private void log(String key, @Nullable String value) {
+    LOG.info(String.format("%s: %s", key, value));
   }
 
   private static File initDir(Properties props, String propKey) {

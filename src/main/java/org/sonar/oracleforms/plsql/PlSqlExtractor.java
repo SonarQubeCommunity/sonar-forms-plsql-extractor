@@ -41,6 +41,7 @@ public class PlSqlExtractor {
   }
 
   public void run() throws IOException {
+    settings.logEnv();
     jdapiAvailability.check();
     try {
       jdapi.init();
