@@ -7,7 +7,7 @@
     <version>18</version>
   </parent>
   <artifactId>sonar-forms-plsql-extractor</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
   <name>Forms PL/SQL Extractor</name>
   <description>Command-line that extracts PL/SQL code from Oracle Forms project</description>
   <inceptionYear>2014</inceptionYear>
@@ -29,7 +29,7 @@
     <connection>scm:git:https://github.com/SonarCommunity/sonar-forms-plsql-extractor</connection>
     <developerConnection>scm:git:https://github.com/SonarCommunity/sonar-forms-plsql-extractor</developerConnection>
     <url>https://github.com/SonarCommunity/sonar-forms-plsql-extractor</url>
-    <tag>HEAD</tag>
+    <tag>1.1</tag>
   </scm>
 
   <issueManagement>
