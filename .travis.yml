@@ -6,6 +6,7 @@ jdk:
   - oraclejdk7
 
 script:
+  - mvn install:install-file  -Dfile=libs/frmjdapi-10.0.jar -DgroupId=com.oracle -DartifactId=frmjdapi -Dversion=10.0 -Dpackaging=jar
   - mvn verify -B -e -V
 
 cache:
