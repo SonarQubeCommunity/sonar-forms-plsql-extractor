@@ -33,8 +33,8 @@
   </scm>
 
   <issueManagement>
-    <system>JIRA</system>
-    <url>https://jira.codehaus.org/browse/SONARPLUGINS/component/16261</url>
+    <system>GitHub</system>
+    <url>https://github.com/SonarCommunity/sonar-forms-plsql-extractor/issues</url>
   </issueManagement>
 
   <dependencies>
