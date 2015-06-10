@@ -6,7 +6,7 @@ This command-line extracts PL/SQL code from Oracle Forms sources.
 How to run
 ----------
 
-See http://docs.codehaus.org/pages/viewpage.action?pageId=239370845
+See http://docs.sonarqube.org/pages/viewpage.action?pageId=3671472
 
 How to build
 ------------
