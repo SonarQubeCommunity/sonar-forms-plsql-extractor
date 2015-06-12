@@ -9,6 +9,7 @@ Download
 --------
 
 Latest version is 1.1, released on 14 May 2014
+
 http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/sonar-forms-plsql-extractor/1.1/sonar-forms-plsql-extractor-1.1-jar-with-dependencies.jar
 
 Prerequisites
