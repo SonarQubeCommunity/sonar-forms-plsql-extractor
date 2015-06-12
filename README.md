@@ -19,9 +19,9 @@ The "PATH" environment variable must contain the Oracle Developer Suite paths, f
 
 Use Java 1.6 or higher to run Sonar Forms PLSQL Extractor.
 
-Extract PL/SQL Codebase
------------------------
-Download the extractor JAR file (see link in the top of this page) then execute:
+How to execute
+--------------
+Download the JAR file then execute:
 
 ```
 set FORMS_PATH=C:\forms_project
@@ -29,7 +29,7 @@ java -DinputDir=C:\forms_project -DoutputDir=C:\extracted_plsql -cp C:\path\to\s
 ```
 
 Notes:
-* A formsExtensions property can also be set. It's a comma-separated list of extensions of Oracle Forms files to extract. Its default value is fmb,mmb,olb,pll.
+* The optional property ```formsExtensions``` is a comma-separated list of extensions of Oracle Forms files to extract. Its default value is ```fmb,mmb,olb,pll```.
 * The output directory, as set by the outputDir property, must exist and is not cleaned up. Generated files override existing ones.
 
 FAQ
