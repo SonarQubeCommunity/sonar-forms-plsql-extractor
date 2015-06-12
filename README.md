@@ -1,15 +1,43 @@
 Oracle Forms PL/SQL Extractor
 =============================
 
-This command-line extracts PL/SQL code from Oracle Forms sources.
+Features
+--------
+This command-line gives the ability to extract PL/SQL source code from Oracle Forms. You can then feed SonarQube with the extracted PL/SQL source code.
 
-How to run
-----------
+Download
+--------
 
-See http://docs.sonarqube.org/pages/viewpage.action?pageId=3671472
+Latest version is 1.1, released on 14 May 2014
+http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/sonar-forms-plsql-extractor/1.1/sonar-forms-plsql-extractor-1.1-jar-with-dependencies.jar
 
-How to build
-------------
+Prerequisites
+-------------
+This extractor uses the Oracle JDAPI library that is included in the Oracle Developer Suite. Therefore a full installation of the Oracle Developer Suite is required. Once installed, check that the environment is correctly set:
+
+The "PATH" environment variable must contain the Oracle Developer Suite paths, for example: ```PATH=C:/OracleDevSuite/jlib;C:/OracleDevSuite/bin;```
+Use Java 1.6 or higher to run Sonar Forms PLSQL Extractor.
+
+Extract PL/SQL Codebase
+-----------------------
+Download the extractor JAR file (see link in the top of this page) then execute:
+
+```
+set FORMS_PATH=C:\forms_project
+java -DinputDir=C:\forms_project -DoutputDir=C:\extracted_plsql -cp C:\path\to\sonar-forms-plsql-extractor-1.1-jar-with-dependencies.jar;C:\path\to\oracle\forms\java\frmjdapi.jar org.sonar.oracleforms.plsql.PlSqlExtractor
+```
+
+Notes:
+* A formsExtensions property can also be set. It's a comma-separated list of extensions of Oracle Forms files to extract. Its default value is fmb,mmb,olb,pll.
+* The output directory, as set by the outputDir property, must exist and is not cleaned up. Generated files override existing ones.
+
+FAQ
+---
+Q : I'm getting "Exception in thread "main" java.lang.NoClassDefFoundError: Could not initialize class oracle.forms.jdapi.Jdapi" whilst my env variables and paths are correctly configured, why ?
+A :  Oracle Developer Suite used to perform the extraction is available only for x32 OS. As a consequence, the Oracle Forms PL/SQL Extractor will work only on x32 OS.
+
+How to build project
+--------------------
 
 The Java library frmjdapi is provided by the Oracle Developer Suite (see forms/java/frmjdapi.jar) and must be installed into the Maven repository :
 
