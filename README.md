@@ -14,7 +14,7 @@ http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/sonar-forms-
 
 Prerequisites
 -------------
-This extractor uses the Oracle JDAPI library that is included in the Oracle Developer Suite. Therefore a full installation of the Oracle Developer Suite is required. Once installed, check that the environment is correctly set:
+This extractor uses the Oracle JDAPI library that is included in the [Oracle Developer Suite|http://www.oracle.com/technetwork/developer-tools/developer-suite/downloads/index.html]. Therefore a full installation of the Oracle Developer Suite is required. Once installed, check that the environment is correctly set:
 
 The "PATH" environment variable must contain the Oracle Developer Suite paths, for example: ```PATH=C:/OracleDevSuite/jlib;C:/OracleDevSuite/bin;```
 
