@@ -16,6 +16,7 @@ Prerequisites
 This extractor uses the Oracle JDAPI library that is included in the Oracle Developer Suite. Therefore a full installation of the Oracle Developer Suite is required. Once installed, check that the environment is correctly set:
 
 The "PATH" environment variable must contain the Oracle Developer Suite paths, for example: ```PATH=C:/OracleDevSuite/jlib;C:/OracleDevSuite/bin;```
+
 Use Java 1.6 or higher to run Sonar Forms PLSQL Extractor.
 
 Extract PL/SQL Codebase
@@ -33,7 +34,9 @@ Notes:
 
 FAQ
 ---
+
 Q : I'm getting "Exception in thread "main" java.lang.NoClassDefFoundError: Could not initialize class oracle.forms.jdapi.Jdapi" whilst my env variables and paths are correctly configured, why ?
+
 A :  Oracle Developer Suite used to perform the extraction is available only for x32 OS. As a consequence, the Oracle Forms PL/SQL Extractor will work only on x32 OS.
 
 How to build project
