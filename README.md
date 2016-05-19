@@ -40,7 +40,7 @@ Q : I'm getting "Exception in thread "main" java.lang.NoClassDefFoundError: Coul
 
 A :  Oracle Developer Suite used to perform the extraction is available only for x32 OS. As a consequence, the Oracle Forms PL/SQL Extractor will work only on x32 OS.
 
-How to Build Sources [![Build Status](https://travis-ci.org/SonarCommunity/sonar-forms-plsql-extractor.svg?branch=master)](https://travis-ci.org/SonarCommunity/sonar-forms-plsql-extractor)
+How to Build Sources [![Build Status](https://travis-ci.org/SonarSource/sonar-forms-plsql-extractor.svg?branch=master)](https://travis-ci.org/SonarCommunity/sonar-forms-plsql-extractor)
 --------------------
 
 The Java library frmjdapi is provided by the Oracle Developer Suite (see forms/java/frmjdapi.jar) and must be installed into the Maven repository :
