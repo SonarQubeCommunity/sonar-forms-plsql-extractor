@@ -26,15 +26,15 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:https://github.com/SonarSource/sonar-forms-plsql-extractor</connection>
-    <developerConnection>scm:git:https://github.com/SonarSource/sonar-forms-plsql-extractor</developerConnection>
-    <url>https://github.com/SonarSource/sonar-forms-plsql-extractor</url>
+    <connection>scm:git:https://github.com/SonarQubeCommunity/sonar-forms-plsql-extractor</connection>
+    <developerConnection>scm:git:https://github.com/SonarQubeCommunity/sonar-forms-plsql-extractor</developerConnection>
+    <url>https://github.com/SonarQubeCommunity/sonar-forms-plsql-extractor</url>
     <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/SonarCommunity/sonar-forms-plsql-extractor/issues</url>
+    <system>GitHub Issues</system>
+    <url>https://github.com/SonarQubeCommunity/sonar-forms-plsql-extractor/issues</url>
   </issueManagement>
 
   <dependencies>
